@@ -1,3 +1,7 @@
+# Hide this file
+usethis::use_git_ignore("install_server_docker.R")
+usethis::use_build_ignore("install_server_docker.R")
+
 ## Allow us to lanch the system command in a new R session
 library(future)
 plan(multisession)
