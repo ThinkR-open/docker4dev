@@ -1,6 +1,9 @@
 # Hide this file
 usethis::use_git_ignore("load_server_docker.R")
 usethis::use_build_ignore("load_server_docker.R")
+## To pass the check
+usethis::use_git_ignore("library/")
+usethis::use_build_ignore("library/")
 
 ## Allow us to lanch the system command in a new R session
 library(future)
@@ -11,10 +14,6 @@ if (!dir.exists(here::here("library"))) {dir.create(here::here("library"))}
 my_project <- here::here()
 my_library <- here::here("library")
 projectname <- basename(my_project)
-
-## To pass the check
-usethis::use_git_ignore("library/")
-usethis::use_build_ignore("library/")
 
 ## Launch the server in the new R session (terminal have to be active...)
 future({
