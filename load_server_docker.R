@@ -1,8 +1,8 @@
 firsttime <- FALSE
 if (firsttime) {
   # Hide this file
-  usethis::use_git_ignore("install_server.R")
-  usethis::use_build_ignore("install_server.R")
+  usethis::use_git_ignore("load_server_docker.R")
+  usethis::use_build_ignore("load_server_docker.R")
   ## To pass the check
   usethis::use_git_ignore("library/")
   usethis::use_build_ignore("library/")
