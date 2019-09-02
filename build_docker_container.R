@@ -1,6 +1,7 @@
 # Creation of the Docker container
 ## Build the image with the Dockerfile if necessary
-system("docker build -t rstudio3_5_2 .", intern = TRUE)
+system("docker build -t rstudio3_5_2 Dockerfile_R-3.5.2-rocker-verse", intern = TRUE)
+system("docker build -t rstudio3_5_2_geo Dockerfile_R-3.5.2-rocker-verse-geospatial", intern = TRUE)
 
 # Send to Docker hub
 # docker login --username=yourhubusername
