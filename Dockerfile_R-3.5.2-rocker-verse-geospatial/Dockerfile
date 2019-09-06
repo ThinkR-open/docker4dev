@@ -61,13 +61,16 @@ RUN apt-get update \
 # Set MRAN
 RUN echo "options(repos = list(CRAN = 'https://mran.revolutionanalytics.com/snapshot/2019-01-12/'))" >> /usr/local/lib/R/etc/Rprofile.site
 
-RUN R -e "update.packages(ask = FALSE)"
+# Install versions available on MRAN at the correct date
 RUN R -e "install.packages('remotes')"
+RUN R -e 'll <- installed.packages()[,1] ; ll <- ll[-which(lapply(ll, packageDescription, field="Priority") == "base")] ; lapply(ll, try(remotes::install_version))'
+# RUN R -e "update.packages(ask = FALSE)"
 
 # golem and deps
 RUN R -e "remotes::install_github(repo = 'ThinkR-open/golem', ref = '51d7e98261268dab2d4972e172af473f6891107e')"
 
 # spatial pkg
+RUN R -e "install.packages(c('Rcpp', 'units', 'sf'))"
 RUN R -e "remotes::install_github(repo = 'r-spatial/lwgeom', ref = '1cd8e1bac5c3ae8ce56ef5368b8a87efa00e716d')"
   
 # Directory for supplemental packages
