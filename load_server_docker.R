@@ -10,7 +10,8 @@ if (firsttime) {
 
 ## Allow us to lanch the system command in a new R session
 library(future)
-plan(multisession(workers = 1))
+# Requires at least 2 workers otherwise does not work
+plan(multisession(workers = 2))
 
 ### Set good working directory for docker volumes
 if (!dir.exists(here::here("library"))) {dir.create(here::here("library"))}
