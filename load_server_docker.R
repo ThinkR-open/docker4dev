@@ -13,6 +13,9 @@ usethis::use_git_ignore("last-project-path")
 
 # Which container ?
 container <- c("rstudio3_5_2", "rstudio3_5_2_geo")[1]
+# Which port ?
+# _Useful if multiple Rstudio Server to launch
+port <- 8787
 
 ## Allow us to lanch the system command in a new R session
 library(future)
@@ -41,13 +44,13 @@ future({
       " -v ", my_library, ":/home/rstudio/library",
       " -v ", my_project, ":/home/rstudio/", projectname,
       " -v ", my_project, "/last-project-path", ":/home/rstudio/.rstudio/projects_settings/last-project-path",
-      " -p 127.0.0.1:8787:8787 -e DISABLE_AUTH=true ",
+      " -p 127.0.0.1:", port, ":8787 -e DISABLE_AUTH=true ",
       container),
     intern = TRUE)
 })
 
 Sys.sleep(2)
-browseURL("http://127.0.0.1:8787")
+browseURL(paste0("http://127.0.0.1:", port))
 
 stop <- FALSE
 if (stop) {
