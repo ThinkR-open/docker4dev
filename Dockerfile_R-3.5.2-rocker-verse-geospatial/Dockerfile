@@ -75,4 +75,5 @@ RUN R -e "remotes::install_github(repo = 'r-spatial/lwgeom', ref = '1cd8e1bac5c3
   
 # Directory for supplemental packages
 RUN R -e "dir.create('/home/rstudio/library/')"
-RUN echo ".libPaths(c('/home/rstudio/library', .libPaths())); message('Hi there ! Do not forget to work in a project !')" >> /home/rstudio/.Rprofile
+RUN echo ".libPaths(c('/home/rstudio/library', .libPaths())); \
+  ">> /home/rstudio/.Rprofile

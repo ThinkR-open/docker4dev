@@ -43,4 +43,5 @@ RUN R -e "remotes::install_github(repo = 'ThinkR-open/golem', ref = '51d7e982612
 
 # Directory for supplemental packages
 RUN R -e "dir.create('/home/rstudio/library/')"
-RUN echo ".libPaths(c('/home/rstudio/library', .libPaths())); message('Hi there ! Do not forget to work in a project !')" >> /home/rstudio/.Rprofile
+RUN echo ".libPaths(c('/home/rstudio/library', .libPaths())); \
+  ">> /home/rstudio/.Rprofile
