@@ -12,7 +12,7 @@ usethis::use_git_ignore("last-project-path")
 }
 
 # Which container ?
-container <- c("rstudio3_5_2", "rstudio3_5_2_geo")[1]
+container <- c("thinkr/rstudio3_5_2", "thinkr/rstudio3_5_2_geo")[1]
 # Which port ?
 # _Useful if multiple Rstudio Server to launch
 port <- 8787
