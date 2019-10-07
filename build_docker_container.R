@@ -9,9 +9,9 @@ system("docker build -t rstudio3_5_2_geo Dockerfile_R-3.5.2-rocker-verse-geospat
 ## _Find the latest build of your image
 # docker tag 518a41981a6a myRegistry.com/myImage
 # ou
-# docker tag rstudio3_5_2_geo thinkr/rstudio3_5_2_geo:latest
+# docker tag rstudio3_5_2 thinkr/rstudio3_5_2:latest
 ## _Push
-# docker push thinkr/rstudio3_5_2_geo:latest
+# docker push thinkr/rstudio3_5_2:latest
 ## Get
 # Or use docker pull thinkr/rstudio3_5_2
 # docker pull thinkr/rstudio3_5_2_geo

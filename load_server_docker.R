@@ -1,18 +1,22 @@
 firsttime <- FALSE
 if (firsttime) {
-# Hide this file
-usethis::use_git_ignore("load_server_docker.R")
-usethis::use_build_ignore("load_server_docker.R")
-## To pass the check
-usethis::use_git_ignore("library/")
-usethis::use_build_ignore("library/")
-# last-project-path
-usethis::use_build_ignore("last-project-path")
-usethis::use_git_ignore("last-project-path")
+  # Hide this file
+  usethis::use_git_ignore("load_server_docker.R")
+  usethis::use_build_ignore("load_server_docker.R")
+  ## To pass the check
+  usethis::use_git_ignore("library/")
+  usethis::use_build_ignore("library/")
+  # last-project-path
+  # usethis::use_build_ignore("last-project-path")
+  # usethis::use_git_ignore("last-project-path")
+  # rstudio preferences
+  dir.create("rstudio_prefs")
+  usethis::use_build_ignore("rstudio_prefs")
+  usethis::use_git_ignore("rstudio_prefs")
 }
 
 # Which container ?
-container <- c("thinkr/rstudio3_5_2", "thinkr/rstudio3_5_2_geo")[1]
+container <- c("thinkr/rstudio3_5_2", "rstudio3_5_2_geo")[1]
 # Which port ?
 # _Useful if multiple Rstudio Server to launch
 port <- 8787
@@ -43,7 +47,8 @@ future({
       "docker run --name ", projectname,
       " -v ", my_library, ":/home/rstudio/library",
       " -v ", my_project, ":/home/rstudio/", projectname,
-      " -v ", my_project, "/last-project-path", ":/home/rstudio/.rstudio/projects_settings/last-project-path",
+      # " -v ", my_project, "/last-project-path", ":/home/rstudio/.rstudio/projects_settings/last-project-path",
+      " -v ", my_project, "/rstudio_prefs", ":/home/rstudio/.rstudio",
       " -p 127.0.0.1:", port, ":8787 -e DISABLE_AUTH=true ",
       container),
     intern = TRUE)
@@ -54,6 +59,9 @@ browseURL(paste0("http://127.0.0.1:", port))
 
 stop <- FALSE
 if (stop) {
+  # --- /!\ Do not forget to stop properly the Rstudio Server /!\ --- #
+  # Click on Top right button to quit or `q()` in the console
+  
   ## To stop your image after your work proprely
   system(paste("docker kill", projectname))
   system(paste("docker rm", projectname))
@@ -63,6 +71,8 @@ if (stop) {
   # git config credential.helper store
   # _and your name
   # usethis::use_git_config(scope = "project", user.name = "", user.email = "@thinkr.fr")
+  ## Template git
+  # git2r::config(global = FALSE, commit.template = "config_git/template_commit")
   
   ## To install new packages used
   # remotes::install_github("ThinkR-open/attachment")
