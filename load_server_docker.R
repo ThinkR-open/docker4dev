@@ -78,4 +78,11 @@ if (stop) {
   # remotes::install_github("ThinkR-open/attachment")
   pkgs <- attachment::att_from_description()
   attachment::install_if_missing(pkgs)
+  
+  # If you installed package from github or forced one CRAN 
+  # you may have to be sure to install dependencies from MRAN
+  ll <- list.files("library")
+  for (l in ll) {
+    try(remotes::install_version(l))
+  }
 }
