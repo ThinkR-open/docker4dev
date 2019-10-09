@@ -63,7 +63,7 @@ RUN echo "options(repos = list(CRAN = 'https://mran.revolutionanalytics.com/snap
 
 # Install versions available on MRAN at the correct date
 RUN R -e "install.packages('remotes')"
-RUN R -e 'll <- installed.packages()[,1] ; ll <- ll[-which(lapply(ll, packageDescription, field="Priority") == "base")] ; lapply(ll, try(remotes::install_version))'
+RUN R -e 'll <- installed.packages()[,1] ; ll <- ll[-which(lapply(ll, packageDescription, field="Priority") == "base")] ; for(l in ll){try(remotes::install_version(l))}'
 # RUN R -e "update.packages(ask = FALSE)"
 
 # golem and deps
