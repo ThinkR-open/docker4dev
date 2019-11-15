@@ -16,7 +16,9 @@ if (firsttime) {
 }
 
 # Which container ?
-container <- c("thinkr/rstudio3_5_2", "rstudio3_5_2_geo")[1]
+container <- c("thinkr/rstudio3_5_2",
+               "thinkr/rstudio3_5_2_geo",
+               "thinkr/rstudio3_6_1_geo")[2]
 # Which port ?
 # _Useful if multiple Rstudio Server to launch
 port <- 8787
@@ -37,8 +39,8 @@ if (!file.exists(paste0(projectname, ".Rproj"))) {
   stop(".Rproj file should have the same name as the working directory and project name")
 }
 
-cat("/home/rstudio/", projectname, "/", projectname, ".Rproj", 
-    sep = "", file = "last-project-path")
+# cat("/home/rstudio/", projectname, "/", projectname, ".Rproj", 
+#     sep = "", file = "last-project-path")
 
 ## Launch the server in the new R session (terminal have to be active...)
 future({
