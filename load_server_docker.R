@@ -19,6 +19,11 @@ if (firsttime) {
 container <- c("thinkr/rstudio3_5_2",
                "thinkr/rstudio3_5_2_geo",
                "thinkr/rstudio3_6_1_geo")[2]
+# Pull container if needed
+if (FALSE) {
+  system(paste("docker pull", container))
+}
+
 # Which port ?
 # _Useful if multiple Rstudio Server to launch
 port <- 8787
