@@ -22,7 +22,10 @@ RUN  R -e 'options("Ncpus" = 6);source("https://raw.githubusercontent.com/ThinkR
 RUN R -e "remotes::install_github(repo = 'ThinkR-open/golem', ref = 'dev', upgrade = 'never')"
 
 # spatial pkg
-RUN R -e "options("Ncpus" = 6);install.packages(c('here', 'Rcpp', 'units', 'sf', 'lwgeom', 'leaflet', 'raster', 'stars', 'ggspatial', 'units', 'extrafont', 'ggrepel', 'tmap', 'rnaturalearth', 'rnaturalearthdata', 'gganimate', 'terra', 'ceramic', 'rosm', 'mapview', 'mapedit', 'rgl', 'rgeos', 'magick', 'colourpicker', 'cartography', 'shinyjs', 'transformr', 'geofacet', 'mapdeck'))"
+# RUN apt install r-cran-gstat r-cran-maps r-cran-mapdata r-cran-ncdf4 r-cran-sf r-cran-sp r-cran-raster r-cran-geor r-cran-ggmap r-cran-leaflet r-cran-rosm
+
+RUN R -e "options("Ncpus" = 6);install.packages(c('sf', 'leaflet', 'raster', 'rosm', 'gstat', 'maps', 'mapdata', 'ncdf4', 'sp', 'geoR', 'ggmap'))"
+RUN R -e "options("Ncpus" = 6);install.packages(c('here', 'Rcpp', 'units', 'lwgeom', 'stars', 'ggspatial', 'extrafont', 'ggrepel', 'tmap', 'rnaturalearth', 'rnaturalearthdata', 'gganimate', 'terra', 'ceramic', 'mapview', 'mapedit', 'rgl', 'rgeos', 'magick', 'colourpicker', 'cartography', 'shinyjs', 'transformr', 'geofacet', 'mapdeck'))"
 RUN R -e 'install.packages("rnaturalearthhires", repos = "http://packages.ropensci.org", type = "source")'
 # RUN R -e "remotes::install_github(repo = 'r-spatial/lwgeom', ref = '1cd8e1bac5c3ae8ce56ef5368b8a87efa00e716d')"
 RUN R -e "remotes::install_github('statnmap/cartomisc', upgrade = 'never')"

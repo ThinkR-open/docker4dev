@@ -13,6 +13,11 @@ RUN apt-get update \
   && dpkg -i rstudio-server-*-amd64.deb \
   && rm rstudio-server-*-amd64.deb
 
+# Spatial libs
+RUN apt-get update \
+  && add-apt-repository --enable-source --yes "ppa:marutter/rrutter3.5" \
+	&& add-apt-repository --enable-source --yes "ppa:marutter/c2d4u3.5"
+
 # geospatial
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
