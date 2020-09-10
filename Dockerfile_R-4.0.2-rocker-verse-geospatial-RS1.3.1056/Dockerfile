@@ -5,10 +5,11 @@ MAINTAINER "Sébastien Rochette" sebastien@thinkr.fr
 
 # RUN apt-get update && apt-get upgrade --yes
 
-# Update Rstudio Server to 1.3.1056
+# Update Rstudio Server to 1.3.959
 RUN apt-get update \
 #  && apt-get install -y --no-install-recommends \
-  && RSTUDIO_URL="http://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.3.1056-amd64.deb" \
+#  && RSTUDIO_URL="http://download2.rstudio.org/server/focal/amd64/rstudio-server-1.3.959-amd64.deb" \
+  && RSTUDIO_URL="https://s3.amazonaws.com/rstudio-ide-build/server/bionic/amd64/rstudio-server-1.3.959-amd64.deb" \
   && wget -q $RSTUDIO_URL \
   && dpkg -i rstudio-server-*-amd64.deb \
   && rm rstudio-server-*-amd64.deb
@@ -56,4 +57,9 @@ RUN apt-get update \
 RUN apt-get install -y --no-install-recommends \
   default-mysql-client \
   default-libmysqlclient-dev  
+  
+# locales
+RUN apt-get install -y language-pack-fr
+
+  
   

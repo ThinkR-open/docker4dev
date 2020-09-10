@@ -53,6 +53,9 @@ system("docker tag rstudio4_0_2_geo_rs1.3.1056_pkg thinkr/rstudio4_0_2_geo_rs1.3
 
 # docker push thinkr/rstudio3_6_3_geo_rs1.3.959
 # docker push thinkr/rstudio3_6_3_geo_rs1.3.959_pkg
+#
+# docker push thinkr/rstudio4_0_2_geo_rs1.3.1056
+# docker push thinkr/rstudio4_0_2_geo_rs1.3.1056_pkg
 ## Get
 # Or use docker pull thinkr/rstudio3_5_2
 # docker pull thinkr/rstudio3_5_2_geo
