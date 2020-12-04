@@ -1,21 +1,24 @@
-# thinkr4servier
+# thinkr4dev
 
-Des trucs internes pour utiliser chez Servier mais qu'on garde pour nous
+Des Dockers avec tout ce qu'il faut pour SantaCruz en formation R.
 
-## Créer un Docker comme chez Servier
-Utiliser le script `build_docker_container.R` ici, ou directement utiliser `use docker pull thinkr/rstudio3_5_2`
+## Créer un Docker pour prestation
+Utiliser le script `build_docker_container.R` ici, ou directement utiliser `use docker pull thinkr/docker4dev`
 
-> Il n'a besoin d'être créé qu'une fois sur votre ordinateur pour tous les projets Servier. 
+- Lorsqu'on fait un release, le conteneur est créé automatiquement sur Docker Hub
 
-## Lancer le container pour le projet
-Utiliser le script `load_server_docker.R` dans son package. Ce script ne doit pas être envoyé sur git, ni être dans le package livré. 
+## Lancer le container pour le projet avec {devindocker}
 
-- Copier le fichier `load_server_docker.R` à la racine de votre projet
-- Cacher de git et build car ça doit rester en interne ThinkR
-```r
-usethis::use_git_ignore("load_server_docker.R")
-usethis::use_build_ignore("load_server_docker.R")
-```
+https://thinkr-open.github.io/devindocker/
 
-> Les packages installés en cours de développement sont persistents dans votre projet (caché de git et de build aussi)
+## Rendre ce dépôt automatiquement build avec Docker Hub
 
+- Se connecter sur Docker Hub
+- Lier son compte à GitHub (Mon compte > Link Accounts)
+	+ Autoriser organisation ThinkR à la connexion
+	+ Sinon revoke sur GitHub et recommencer sur DockerHub
+- Creer un repo
+- Donner un nom
+- Create
+- Aller dans "Builds"
+- Link to GitHub

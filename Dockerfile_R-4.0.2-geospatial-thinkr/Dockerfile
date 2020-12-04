@@ -4,7 +4,7 @@ FROM rocker/geospatial:4.0.2
 MAINTAINER "Sébastien Rochette" sebastien@thinkr.fr
 
 # database ----
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
   default-mysql-client \
   default-libmysqlclient-dev  
   
@@ -20,20 +20,23 @@ RUN mv /etc/localtime /etc/localtime_backup \
 # Docker ----
 # Not necessary
 
+# Change Rstudio MRAN to latest and binary
+RUN echo 'options(repos = c(REPO_NAME = "https://packagemanager.rstudio.com/all/__linux__/focal/latest"))' >> /usr/local/lib/R/etc/Rprofile.site
+
 # Install packages ----
 RUN R -e "install.packages('remotes')"
 
 # Webshot
 RUN R -e "install.packages('webshot'); webshot::install_phantomjs()"
+RUN cp ~/bin/phantomjs /usr/local/share/phantomjs \
+  && chmod 0755 /usr/local/share/phantomjs \
+  && ln -sf /usr/local/share/phantomjs /usr/local/bin
 
 # tinytex
 RUN R -e "install.packages('tinytex'); tinytex::install_tinytex()"
 
 # renv
 RUN R -e "remotes::install_github('rstudio/renv', upgrade = 'never')"
-
-# Change Rstudio MRAN to latest
-RUN echo 'options(repos = c(REPO_NAME = "https://packagemanager.rstudio.com/all/latest"))' >> /usr/local/lib/R/etc/Rprofile.site
 
 # Update
 RUN R -e "update.packages(ask = FALSE)"
