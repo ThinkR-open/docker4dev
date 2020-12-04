@@ -7,8 +7,6 @@ system("docker build -t rstudio3_6_1_geo_renv Dockerfile_R-3.6.1-rocker-verse-ge
 system("docker build -t rstudio3_6_3_geo_renv Dockerfile_R-3.6.3-rocker-verse-geospatial-renv", intern = FALSE)
 system("docker build -t rstudio4_0_0_geo_renv Dockerfile_R-4.0.0-rocker-verse-geospatial-renv", intern = FALSE)
 
-# R4.0.0 not ready for spatial. Missing liblwgeom
-
 # R 3.6 ===============================
 # RStudio update et systemfile carto
 id <- rstudioapi::terminalExecute("docker build -t rstudio3_6_3_geo_rs1.3.959 Dockerfile_R-3.6.3-rocker-verse-geospatial-RS1.3.959")
@@ -35,6 +33,11 @@ system("docker tag rstudio4_0_2_geo_rs1.3.1056 thinkr/rstudio4_0_2_geo_rs1.3.105
 id <- rstudioapi::terminalExecute("docker build -t rstudio4_0_2_geo_rs1.3.1056_pkg Dockerfile_R-4.0.2-rocker-verse-geospatial-RS1.3.1056-pkg")
 rstudioapi::terminalKill(id = id)
 system("docker tag rstudio4_0_2_geo_rs1.3.1056_pkg thinkr/rstudio4_0_2_geo_rs1.3.1056_pkg:latest")
+
+# R4.0 with Docker simpler image
+id <- rstudioapi::terminalExecute("docker build -t geospatial_thinkr Dockerfile_R-4.0.2-geospatial-thinkr")
+rstudioapi::terminalKill(id = id)
+system("docker tag geospatial_thinkr thinkr/geospatial_thinkr:latest")
 
 
 ## Send to Docker hub
