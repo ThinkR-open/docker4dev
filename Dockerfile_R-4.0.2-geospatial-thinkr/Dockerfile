@@ -56,5 +56,26 @@ RUN R -e "options("Ncpus" = 6);install.packages(c('here', 'Rcpp', 'units', 'lwge
 RUN R -e 'install.packages("rnaturalearthhires", repos = "http://packages.ropensci.org", type = "source")'
 RUN R -e "remotes::install_github('statnmap/cartomisc', upgrade = 'never')"
 
+# Chromium for {pagedown} ----
+# RUN apt-get install -y chromium-browser 
 
+# RUN apt-get install -y software-properties-common \
+#  && add-apt-repository ppa:canonical-chromium-builds/stage \
+#  && apt-get install -y chromium-browser 
+
+# RUN apt-get install -y snapd && snap install chromium
+
+RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list
+RUN apt-get install -y gnupg2 \
+  && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+RUN echo "Comenzando actualizacion"
+RUN apt-get update
+RUN echo "Finalizando actualizacion"
+RUN apt-get -y install libxpm4 libxrender1 libgtk2.0-0 libnss3 libgconf-2-4
+RUN apt-get -y install xvfb gtk2-engines-pixbuf
+RUN apt-get -y install xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable
+RUN apt-get -y install google-chrome-stable
+
+  
+RUN R -e "remotes::install_cran('pagedown')"
   
