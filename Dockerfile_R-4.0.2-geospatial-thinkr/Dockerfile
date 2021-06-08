@@ -44,8 +44,9 @@ RUN R -e "update.packages(ask = FALSE)"
 # All ThinkR
 RUN  R -e 'options("Ncpus" = 6);source("https://raw.githubusercontent.com/ThinkR-open/installR/master/new-install.R")'
 
-# golem and deps
+# golem, fusen and deps
 RUN R -e "remotes::install_github(repo = 'ThinkR-open/golem', ref = 'master', upgrade = 'never')"
+RUN R -e "remotes::install_github(repo = 'ThinkR-open/fusen', ref = 'master', upgrade = 'never')"
 
 # spatial pkg
 # RUN apt-get install r-cran-gstat r-cran-maps r-cran-mapdata r-cran-ncdf4 r-cran-sf r-cran-sp r-cran-raster r-cran-geor r-cran-ggmap r-cran-leaflet r-cran-rosm
