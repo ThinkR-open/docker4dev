@@ -10,10 +10,15 @@ system("docker build -t docker4dev geospatial_thinkr", intern = FALSE)
 # Add packages with MRAN
 id <- rstudioapi::terminalExecute("docker build -t docker4dev geospatial_thinkr")
 rstudioapi::terminalKill(id = id)
-system("docker tag docker4dev thinkr/geospatial_thinkr:latest")
+system("docker tag docker4dev thinkr/docker4dev:v4.0.2-RS1.4")
+
 
 # R4.0 RStudio 1.4 with Docker simpler image
 id <- rstudioapi::terminalExecute("docker build -t geospatial_thinkr Dockerfile_R-4.0.2-geospatial-thinkr")
 rstudioapi::terminalKill(id = id)
-system("docker tag docker4dev thinkr/geospatial_thinkr:latest")
+system("docker tag docker4dev thinkr/docker4dev:latest")
+
+## Send to Docker hub
+# docker login --username=<my_username>
+# system("docker push thinkr/docker4dev:v4.0.2-RS1.4")
 
