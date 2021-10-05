@@ -59,7 +59,10 @@ RUN apt-get update \
     unixodbc-dev
   
 # Set MRAN
-RUN echo "options(repos = list(CRAN = 'https://mran.revolutionanalytics.com/snapshot/2019-01-12/'))" >> /usr/local/lib/R/etc/Rprofile.site
+# RUN echo "options(repos = list(CRAN = 'https://mran.revolutionanalytics.com/snapshot/2019-01-12/'))" >> /usr/local/lib/R/etc/Rprofile.site
+# Change Rstudio MRAN to latest and binary
+RUN echo 'options(repos = c(REPO_NAME = "https://packagemanager.rstudio.com/all/__linux__/focal/latest"))' >> /usr/local/lib/R/etc/Rprofile.site
+
 
 # Install versions available on MRAN at the correct date
 RUN R -e "install.packages('remotes')"

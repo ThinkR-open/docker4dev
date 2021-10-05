@@ -1,7 +1,7 @@
 FROM rocker/geospatial:4.0.2
 # Last is ubuntu focal 20.04
 
-MAINTAINER "Sébastien Rochette" sebastien@thinkr.fr
+LABEL maintainer="sebastien@thinkr.fr"
 
 # database ----
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -51,9 +51,9 @@ RUN R -e "remotes::install_github(repo = 'ThinkR-open/fusen', ref = 'master', up
 # spatial pkg
 # RUN apt-get install r-cran-gstat r-cran-maps r-cran-mapdata r-cran-ncdf4 r-cran-sf r-cran-sp r-cran-raster r-cran-geor r-cran-ggmap r-cran-leaflet r-cran-rosm
 
-RUN R -e "options("Ncpus" = 6);install.packages(c('sf', 'leaflet', 'raster', 'rosm', 'gstat', 'maps', 'mapdata', 'ncdf4', 'sp', 'geoR', 'ggmap'))"
+RUN R -e "options('Ncpus' = 6);install.packages(c('sf', 'leaflet', 'raster', 'rosm', 'gstat', 'maps', 'mapdata', 'ncdf4', 'sp', 'geoR', 'ggmap'))"
 
-RUN R -e "options("Ncpus" = 6);install.packages(c('here', 'Rcpp', 'units', 'lwgeom', 'stars', 'ggspatial', 'extrafont', 'ggrepel', 'tmap', 'rnaturalearth', 'rnaturalearthdata', 'gganimate', 'terra', 'ceramic', 'mapview', 'mapedit', 'rgl', 'rgeos', 'magick', 'colourpicker', 'cartography', 'shinyjs', 'transformr', 'geofacet', 'mapdeck', 'rasterVis'))"
+RUN R -e "options('Ncpus' = 6);install.packages(c('here', 'Rcpp', 'units', 'lwgeom', 'stars', 'ggspatial', 'extrafont', 'ggrepel', 'tmap', 'rnaturalearth', 'rnaturalearthdata', 'gganimate', 'terra', 'ceramic', 'mapview', 'mapedit', 'rgl', 'rgeos', 'magick', 'colourpicker', 'cartography', 'shinyjs', 'transformr', 'geofacet', 'mapdeck', 'rasterVis'))"
 RUN R -e 'install.packages("rnaturalearthhires", repos = "http://packages.ropensci.org", type = "source")'
 RUN R -e "remotes::install_github('statnmap/cartomisc', upgrade = 'never')"
 
